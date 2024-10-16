@@ -1,0 +1,20 @@
+# Use Node.js 20.x.x LTS as the base image
+FROM node:20-alpine
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Kopieer package.json en yarn.lock voor het installeren van dependencies
+COPY package.json yarn.lock ./
+
+# Installeer alleen de dependencies
+RUN yarn install
+
+# Kopieer de rest van de applicatie
+COPY . .
+
+# Start de applicatie
+CMD ["yarn", "start"]
+
+
+
