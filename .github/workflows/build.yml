@@ -10,7 +10,7 @@ jobs:
     steps:
       # Stap 1: Check de repository-code uit
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       # Stap 2: Installeer NodeJS
       - name: Set up Node.js
