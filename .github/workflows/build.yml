@@ -8,26 +8,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Stap 1: Check de repository-code uit
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      # Stap 2: Installeer NodeJS
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      # Stap 3: Installeer dependencies
       - name: Installeer dependencies
         run: |
           cd webapp
           yarn install
 
-      # Stap 5: Lint de code met de nieuwe configuratie
-      - name: Lint de code
-        env:
-          ESLINT_USE_FLAT_CONFIG: true
+      - name: Migrate ESLint config
         run: |
           cd webapp
-          npx eslint .
+          npx @eslint/migrate-config .eslintrc.json
+
+      - name: Install required ESLint packages
+        run: |
+          cd webapp
+          npm install globals @eslint/js @eslint/eslintrc -D
+
+      - name: Lint de code met flat config
+        env:
+          ESLINT_USE_FLAT_CONFIG: true  # Zet de omgevingsvariabele
+        run: |
+          cd webapp
+          npx eslint .  # Verwijder --ext .js
+
