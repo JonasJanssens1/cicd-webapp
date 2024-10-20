@@ -12,6 +12,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
+      - name: Ga naar de webapp directory
+        run: cd dockerlab/webapp
+
       # Stap 2: Installeer NodeJS
       - name: Set up Node.js
         uses: actions/setup-node@v3
