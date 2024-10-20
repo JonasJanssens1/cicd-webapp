@@ -24,6 +24,5 @@ jobs:
         run: yarn install
 
       # Stap 4: Lint de code
+      - name: Lint de code
         run: yarn lint
-
-      
