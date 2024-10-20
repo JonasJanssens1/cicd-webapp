@@ -24,6 +24,12 @@ jobs:
         run: |
           cd webapp
           yarn install
+      
+      - name: Clear Yarn cache
+        run: |
+          cd webapp
+          yarn cache clean
+
 
       # Stap 4: Lint de code met flat-config
       - name: Lint de code
@@ -31,3 +37,9 @@ jobs:
           cd webapp
           export ESLINT_USE_FLAT_CONFIG=true
           yarn lint
+      - name: Show ESLint version and configuration
+        run: |
+          cd webapp
+          yarn eslint --version
+          yarn eslint --print-config . | cat
+
