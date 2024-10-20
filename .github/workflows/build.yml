@@ -6,8 +6,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      ESLINT_USE_FLAT_CONFIG: true  # Omgevingsvariabele instellen
 
     steps:
       # Stap 1: Check de repository-code uit
@@ -26,9 +24,15 @@ jobs:
           cd webapp
           yarn install
 
-      # Stap 4: Lint de code met flat-config
+      # Stap 4: Migreren van de ESLint-configuratie
+      - name: Migrate ESLint config
+        run: |
+          cd webapp
+          npx @eslint/migrate-config .eslintrc.json  # Vervang dit door het juiste pad naar je configuratiebestand
+
+      # Stap 5: Lint de code met de nieuwe configuratie
       - name: Lint de code
         run: |
           cd webapp
-          yarn lint  # De omgevingsvariabele is automatisch beschikbaar
+          yarn lint
 
