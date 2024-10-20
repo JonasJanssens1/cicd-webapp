@@ -2,6 +2,6 @@
 version: 2
 updates:
   - package-ecosystem: "github-actions"  # Specificeer dat je GitHub Actions wilt monitoren
-    directory: "./03-CICD/.github/workflows/build.yml"  # De directory waarin je .yml-bestanden zich bevinden
+    directory: "./03-CICD/.github/workflows"  # De directory waarin je .yml-bestanden zich bevinden
     schedule:
       interval: "weekly"  # Controleer wekelijks op updates
