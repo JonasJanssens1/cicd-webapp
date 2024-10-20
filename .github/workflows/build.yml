@@ -13,16 +13,20 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      # Stap 2: Installeer NodeJS
+      # Stap 2: Toon de bestanden en mappen in de repository
+      - name: Toon directorystructuur
+        run: ls -R
+
+      # Stap 3: Installeer NodeJS
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      # Stap 3: Installeer dependencies
+      # Stap 4: Installeer dependencies
       - name: Installeer dependencies
         run: yarn install
 
-      # Stap 4: Lint de code
+      # Stap 5: Lint de code
       - name: Lint de code
         run: yarn lint
