@@ -31,6 +31,13 @@ jobs:
         run: |
           cd webapp
           yarn lint
+
+      # Stap 5: Log in op Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}  # Gebruik de secret
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
      # Stap 5: Build het Docker image
       - name: Build Docker image
@@ -39,4 +46,4 @@ jobs:
           context: webapp  # Context is de root van de repository
           file: webapp/dockerfile  # Het Dockerfile in de root
           tags: jonas12janssens/webapp:latest  # Vervang met je Docker Hub username
-          push: false  # We willen het image nog niet pushen
+          push: true  # We willen het image nog niet pushen
