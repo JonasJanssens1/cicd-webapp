@@ -21,14 +21,10 @@ jobs:
 
       # Stap 3: Installeer dependencies
       - name: Installeer dependencies
-        run: |
-          cd webapp
-          yarn install
+        run: yarn install
 
       # Stap 4: Lint de code met flat-config
       - name: Lint de code
-        env:
-          ESLINT_USE_FLAT_CONFIG: true
         run: |
-          cd webapp
+          export ESLINT_USE_FLAT_CONFIG=true
           yarn lint
