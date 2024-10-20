@@ -30,4 +30,4 @@ jobs:
           ESLINT_USE_FLAT_CONFIG: true
         run: |
           cd webapp
-          yarn lint
+          npx eslint .
