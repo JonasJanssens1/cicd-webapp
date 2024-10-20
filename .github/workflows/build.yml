@@ -17,14 +17,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: "20"
 
       # Stap 3: Installeer dependencies
       - name: Installeer dependencies
-        run: yarn install
+        run: |
+          cd webapp
+          yarn install
 
       # Stap 4: Lint de code met flat-config
       - name: Lint de code
         run: |
+          cd webapp
           export ESLINT_USE_FLAT_CONFIG=true
           yarn lint
