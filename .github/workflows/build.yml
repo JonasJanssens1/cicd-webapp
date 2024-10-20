@@ -37,6 +37,6 @@ jobs:
         uses: docker/build-push-action@v4  # Vervang met de laatste versie indien nodig
         with:
           context: .  # Context is de root van de repository
-          file: Dockerfile  # Het Dockerfile in de root
+          file: webapp/dockerfile  # Het Dockerfile in de root
           tags: jonas12janssens/webapp:latest  # Vervang met je Docker Hub username
           push: false  # We willen het image nog niet pushen
