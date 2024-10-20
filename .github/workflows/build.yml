@@ -23,22 +23,11 @@ jobs:
         run: |
           cd webapp
           yarn install
-          
-      - name: Install required ESLint packages
-        run: |
-          cd webapp
-          npm install globals @eslint/js @eslint/eslintrc -D
-
-
-      # Stap 4: Migreren van de ESLint-configuratie
-      - name: Migrate ESLint config
-        run: |
-          cd webapp
-          npx @eslint/migrate-config .eslintrc.json  # Vervang dit door het juiste pad naar je configuratiebestand
 
       # Stap 5: Lint de code met de nieuwe configuratie
       - name: Lint de code
+        env:
+          ESLINT_USE_FLAT_CONFIG: true
         run: |
           cd webapp
           yarn lint
-
