@@ -8,27 +8,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Stap 1: Check de repository-code uit
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      
+      # Stap 2: Installeer NodeJS
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      
+      # Stap 3: Installeer dependencies
       - name: Installeer dependencies
         run: |
           cd webapp
           yarn install
-
+          
        - name: Run tests
         run: |
           cd webapp
           yarn test
 
-      
+      # Stap 5: Lint de code met de nieuwe configuratie
       - name: Lint de code
         env:
           ESLINT_USE_FLAT_CONFIG: false
@@ -36,18 +37,18 @@ jobs:
           cd webapp
           yarn lint
 
-      
+      # Stap 5: Log in op Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}  
+          username: ${{ secrets.DOCKERHUB_USERNAME }}  # Gebruik de secret
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
-    
+     # Stap 5: Build het Docker image
       - name: Build Docker image
-        uses: docker/build-push-action@v4  
+        uses: docker/build-push-action@v4  # Vervang met de laatste versie indien nodig
         with:
-          context: webapp  
-          file: webapp/dockerfile  
-          tags: jonas12janssens/webapp:latest  
-          push: true  
+          context: webapp  # Context is de root van de repository
+          file: webapp/dockerfile  # Het Dockerfile in de root
+          tags: jonas12janssens/webapp:latest  # Vervang met je Docker Hub username
+          push: true  # We willen het image nog niet pushen
