@@ -63,4 +63,13 @@ jobs:
           file: webapp/dockerfile
           tags: jonas12janssens/webapp:latest
           push: true
+      
+      # Stap 10: Snyk
+      - name: Snyk vulnerability scan
+        uses: snyk/actions/node@master
+        with:
+          args: test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
 
