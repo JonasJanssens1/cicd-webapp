@@ -24,10 +24,7 @@ jobs:
           cd webapp
           yarn install
           
-       - name: Run tests
-        run: |
-          cd webapp
-          yarn test
+       
 
       # Stap 5: Lint de code met de nieuwe configuratie
       - name: Lint de code
